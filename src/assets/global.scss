@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+$orange-1: #FE5F00;
+$orange-2: #FFBF9B;
+$orange-3: #fef0e0;
+
+
+$gray-1: #FFBF9B;
+$gray: #bcbcbc;
+$gray-2: #f0efef;
+
+$white: #FFFFFF;
+
+$margin: 3vw;
+
+$radius: 15px;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: $orange-2;
+  padding: 4vw;
+  font-family: "Nunito", sans-serif;
+}
+input[type='checkbox'] {
+  accent-color: $orange-1; 
+  transform: scale(1.3);
+}
+input[type='radio'] {
+  accent-color: $orange-1; 
+  transform: scale(1.3);
+}
