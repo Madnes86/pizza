@@ -3,8 +3,8 @@
     <div class="sort__row">
       <nav class="sort__options">
         <p class="sort__option">Все</p>
-        <p class="sort__option">Мясные</p>
-        <p class="sort__option">Острые</p>
+        <p class="sort__option">Пиццы</p>
+        <p class="sort__option">Суши</p>
       </nav>
       <button class="sort__button" @click="switchSort">
         <svg class="button__svg" width="14" height="14" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">

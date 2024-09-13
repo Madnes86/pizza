@@ -7,8 +7,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  @vite('resources/css/global.css')
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
     * {
       box-sizing: border-box;
       margin: 0;
@@ -54,11 +55,11 @@
 </head>
 <body>
   <div class="app">
-    <x-header />
+    <x-header :pizzas="$pizzas" />
     <x-sort />
     <div class="app__box">
       <x-sidesort />
-      <x-pizza />
+      <x-pizza :pizzas="$pizzas" />
     </div>
   </div>
 </body>

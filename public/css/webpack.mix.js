@@ -1,0 +1,1 @@
+mix.css('resources/css/global.css', 'public/css');
