@@ -20,7 +20,6 @@ input[type='radio'] {
   accent-color: #FE5F00; 
   transform: scale(1.3);
 }
-
 .app {
   background: #f0efef;
   border-radius: 15px;
@@ -122,6 +121,35 @@ input[type='radio'] {
   align-items: center;
   display: flex;
   gap: 10px;
+}
+.medium {
+  grid-template-columns: 100px 1fr 200px;
+}
+.medium .pizza__middle {
+  display: flex;
+  flex-direction: column;
+  min-height: 30px;
+}
+.medium .pizza__title {
+  margin-bottom: 1px;
+}
+.small {
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto auto;
+}
+.small .pizza__img {
+  grid-row: span 2;
+}
+.small .pizza__middle {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.small .pizza__title {
+  margin-bottom: 1px;
+}
+.small .pizza__bottom {
+  grid-column: 2;
 }
 .nav {
   display: flex;

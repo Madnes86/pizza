@@ -1,6 +1,6 @@
 
 @props(['pizzas'])
-@vite('resources/css/global.css')
+
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <div class="inputs">
@@ -21,7 +21,7 @@
         </form>
       </div>
     </div>
-    <div class="input__box-1">
+    <div class="input__box-1 pizzas-container">
       @foreach($pizzas as $pizza)
         <div class="pizza">
           <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
@@ -94,8 +94,8 @@
   </div>
   <div class="input">
     <div class="input__header">
-      <h2 class="input__title">Сумма </h2>
-      <h2> 2365 ₽</h2>
+      <h2 class="input__title">Сумма:</h2>
+      <h2 class="input__title">2365 ₽</h2>
     </div>
     <div class="input__box-4">
       <p class="basket__price">
@@ -144,35 +144,46 @@
       },
     }));
   });
+  function handleResize(entries) {
+    entries.forEach((entry) => {
+      const containerWidth = entry.contentRect.width;
+      const pizzas = entry.target.querySelectorAll('.pizza');
+      const container = entry.target;
+
+      container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(220px, 1fr))';
+
+      if (containerWidth < 700) {
+        container.style.gridTemplateColumns = '1fr';
+      }
+
+      pizzas.forEach((pizza) => {
+        pizza.classList.remove('small', 'medium', 'large');
+        if (containerWidth > 700) {
+          pizza.classList.add('large');
+        } else if (containerWidth > 400) {
+          pizza.classList.add('medium');
+        } else {
+          pizza.classList.add('small');
+        }
+      });
+    });
+  }
+
+  // Выбираем все контейнеры с пиццами
+  const pizzasContainers = document.querySelectorAll('.pizzas-container');
+  const resizeObserver = new ResizeObserver(handleResize);
+
+  // Отслеживаем изменения для каждого контейнера
+  pizzasContainers.forEach((container) => {
+    resizeObserver.observe(container);
+  });
 </script>
 
 <style>
-  @media (max-width: 2000px) {
-    .pizzas {
-      grid-template-columns: 1fr
-    }
-    .pizza {
-      grid-template-columns: 100px 1fr;
-      flex-direction: row;
-    }
-    .pizza__middle {
-      display: flex;
-      flex-direction: column;
-    }
-    .pizza__title {
-      margin-bottom: 1px;
-    }
-    .pizza__img {
-      width: 100px;
-    }
-    .pizza__bottom {
-      grid-column: 2;
-    }
-  }
   .inputs {
     display: grid;
     grid-template-columns: 1fr minmax(1fr, 300px);
-    grid-template-rows: auto;
+    grid-template-rows: 1fr;
     margin: 20px;
     gap: 20px;
   }
@@ -185,6 +196,7 @@
   .input:nth-child(4) {
     grid-column: 2;
     grid-row: 1;
+    max-height: 275px;
   }
   .input {
     background: #FFF;
@@ -192,6 +204,9 @@
     display: flex;
     flex-flow: column;
     width: 100%;
+  }
+  .input__title {
+    white-space: nowrap;
   }
   .input__header {
     align-items: center;
@@ -216,9 +231,10 @@
     border: none;
     font-size: 14px;
   }
-  /* input box */
   .input__box-1 {
+    display: grid;
     padding: 20px;
+    gap: 20px;
   }
   .input__box-2 {
     display: grid;
@@ -255,5 +271,14 @@
     resize: none;
     font-size: 14px;
     width: 100%
+  }
+  @media (max-width: 800px) {
+    .inputs {
+      grid-template-columns: 1fr;
+    }
+    .input:nth-child(4) {
+      grid-column: 1;
+      grid-row: 4;
+    }
   }
 </style>

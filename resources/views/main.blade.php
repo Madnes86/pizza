@@ -1,55 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="{{ asset('css/global.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  @vite('resources/css/global.css')
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
+  <script src="{{ asset('js/global.js') }}" defer></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #FFBF9B;
-      padding: 4vw;
-      font-family: "Nunito", sans-serif;
-    }
-    input[type='checkbox'] {
-      accent-color: #FE5F00; 
-      transform: scale(1.3);
-    }
-    input[type='radio'] {
-      accent-color: #FE5F00; 
-      transform: scale(1.3);
-    }
-
     .app {
-      background: #FFFFFF;
-      border-radius: 15px;
-      margin: auto;
-      max-width: 1200px;
-    }
-    .app__box {
-      display: flex;
-      margin: 4vw;
-      gap: 4vw;
-    }
-    @media (min-width: 1000px) {
-      .app__box {
-        margin: 30px;
-        gap: 30px;
-      }
-    }
-    @media (max-width: 600px) {
-      .app__box {
-        flex-flow: column;
-      }
+      background: #FFF;
     }
   </style>
 </head>
