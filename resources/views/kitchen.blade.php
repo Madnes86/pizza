@@ -10,7 +10,6 @@
 </head>
 <body>
   <div class="app">
-    <x-header :pizzas="$pizzas" />
     <div class="inputs">
       <div class="input" x-data="order()">
         <div class="input__header" x-on:click="toggle()">

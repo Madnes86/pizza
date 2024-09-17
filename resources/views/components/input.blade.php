@@ -1,7 +1,5 @@
-
+{{-- 
 @props(['pizzas'])
-
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <div class="inputs">
   <div class="input">
@@ -113,37 +111,14 @@
         <span class="basket__line"></span>
         <strong>299₽</strong>
       </p>
-      <button class="basket__button" onclick="orders()">Оформить</button>
+      <button class="basket__button" onclick="window.location.href = '/orders'">Оформить</button>
     </div>
   </div>
 </div>
-</div>
+
 
 <script>
-  function orders() {
-    window.location.href = '/orders'; 
-  }
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('pizza', (id) => ({
-      isOrder: false,
-      counter: 1,
-      toggle() {
-        this.isOrder = !this.isOrder;
-      },
-      decrement() {
-        if (this.counter > 1) {
-          this.counter--;
-        } else {
-          this.isOrder = false;
-        }
-      },
-      increment() {
-        if (this.counter < 9) {
-          this.counter++;
-        }
-      },
-    }));
-  });
+
   function handleResize(entries) {
     entries.forEach((entry) => {
       const containerWidth = entry.contentRect.width;
@@ -281,4 +256,4 @@
       grid-row: 4;
     }
   }
-</style>
+</style> --}}

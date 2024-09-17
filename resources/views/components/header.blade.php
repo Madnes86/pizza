@@ -86,28 +86,8 @@
   });
   document.getElementById('button-basket').addEventListener('click', open);
 
-  document.getElementById('decrement').addEventListener('click', decrement);
-  document.getElementById('increment').addEventListener('click', increment);
-
-  // Variables
-  var counter = 1;
-  document.getElementById('counter').innerHTML = counter;
-
-  // Functions
   function open() {
     document.querySelector('.basket').style.display = 'flex';
-  }
-  function decrement() {
-    if (counter > 0) {
-      counter--;
-      document.getElementById('counter').innerHTML = counter;
-    }
-  }
-  function increment() {
-    if (counter < 9) {
-      counter++;
-      document.getElementById('counter').innerHTML = counter;
-    }
   }
 
 </script>

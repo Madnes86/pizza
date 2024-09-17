@@ -10,7 +10,6 @@
 </head>
 <body>
   <div class="app">
-    <x-header :pizzas="$pizzas" />
     <div class="inputs">
       <h1>Мои заказы</h1>
       <div class="input">
