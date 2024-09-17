@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <link rel="stylesheet" href="{{ asset('css/global.css') }}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>kitchen</title>
+  <title>manager</title>
   <script src="{{ asset('js/global.js') }}" defer></script>
-  <style>
-    
-  </style>
 </head>
 <body>
   <div class="app">
@@ -72,13 +69,42 @@
               </div>
             @endforeach
           </div>
+          <div class="input__box-2">
+            <div>
+              <h3>Имя</h3>
+              <p>{ Имя }</p>
+            </div>
+            <div>
+              <h3>Фамилия</h3>
+              <p>{ Фамилия }</p>
+            </div>
+            <div>
+              <h3>E-mail</h3>
+              <p>{ E-mail }</p>
+            </div>
+            <div>
+              <h3>Телефон</h3>
+              <p>{ Телефон }</p>
+            </div>
+          </div>
+          <div class="input__box-3">
+            <div>
+              <h3>Адресс</h3>
+              <p>{ адрес }</p>
+            </div>
+            <div>
+              <h3>Комментарий</h3>
+              <p>{ Комментарий }</p>
+            </div>
+            <div>
+              <h3>Как можно скорее</h3>
+              <p>{ Да }</p>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </body>
 </html>
-
-<script>
-
-</script>

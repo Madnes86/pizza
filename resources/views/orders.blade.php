@@ -49,20 +49,3 @@
   </div>
 </body>
 </html>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('order', () => ({
-      isOrder: false,
-      toggle() {
-        this.isOrder = !this.isOrder;
-      }
-    }));
-  });
-</script>
-
-<style>
-  .input__arow {
-    
-  }
-</style>

@@ -207,10 +207,10 @@
             Войти
           </button>
           <ul class="header__options">
-            <a href="/order">Заказы</a>
+            <a href="/orders">Заказы</a>
             <a href="/cuper">Курьер</a>
             <a href="/kitchen">Кухня</a>
-            <a href="">Менеджер</a>
+            <a href="/manager">Менеджер</a>
           </ul>
           <button class="header__button" onclick="switchBasket()">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -230,7 +230,7 @@
         </div>
         <div class="basket__middle">
           @foreach($pizzas as $pizza)
-            <div class="pizza" style="background-color: #FFF; padding: 5px;">
+            <div class="pizza small" style="background-color: #FFF; padding: 5px;">
               <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
                 <h2>{{ $pizza['title'] }}</h2>
@@ -327,7 +327,7 @@
         <button class="button__accent">Применить</button>
       </div>
       <div>
-        <div class="pizzas">
+        <div class="pizzas pizza-container">
           @foreach($pizzas as $pizza)
             <div class="pizza large">
               <img src="{{ $pizza['image'] }}" alt="pizza">
@@ -389,9 +389,17 @@
     button.addEventListener('click', function(event) {
       const pizzaCard = event.target.closest('.pizza');
       const decrement = pizzaCard.querySelector('.counter');
+      const pizzaCounter = pizzaCard.querySelector('.pizza__counter');
+      const pizzaButton = pizzaCard.querySelector('.pizza__button');
       let count = parseInt(decrement.innerHTML, 10);
-      if (count > 1)
+      if (count > 1) {
         decrement.innerHTML = count - 1;
+      }
+      if (count == 1) {
+        pizzaCounter.style.display = 'none';
+        pizzaButton.style.display = 'flex';
+      }
+
     });
   });
 
@@ -435,16 +443,32 @@
   });
 
   // КНОПКИ
-  const basketButton = document.getElementById('basketButton');
   const basket = document.querySelector('.basket');
   let isBasket = false;
+  let isOpening = false; 
+
+  document.addEventListener('click', function(event) {
+    const isClick = basket.contains(event.target);
+
+    if (isOpening) {
+      isOpening = false; // Сбрасываем флаг после первого клика
+      return;
+    }
+
+    if (!isClick && isBasket) {
+      isBasket = false;
+      basket.style.display = isBasket ? 'flex' : 'none';
+    }
+  });
   
   function switchBasket () {
     isBasket = !isBasket;
-    basket.style.display = 'none';
 
     if (isBasket) {
-      basket.style.display = 'flex';
+      basket.style.display = 'flex'; // Открываем корзину
+      isOpening = true; // Активируем флаг открытия
+    } else {
+      basket.style.display = 'none'; // Закрываем корзину
     }
   }
   

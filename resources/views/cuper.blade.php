@@ -8,9 +8,7 @@
   <title>CUPER</title>
   <script src="{{ asset('js/global.js') }}" defer></script>
   <style>
-    .input__svg {
-      transition: all 0.3s ease;
-    }
+    
   </style>
 </head>
 <body>
@@ -127,21 +125,57 @@
             </div>
           </div>
         </div>
-        
       </div>
+      <div class="input">
+        <div class="input__header">
+          <h2>Заказ { номер }</h2>
+          <p>{ дата }</p>
+          <p>{ статус }</p>
+          <svg class="input__svg" xmlns="http://www.w3.org/2000/svg" width="17" height="10" viewBox="0 0 17 10" fill="none">
+          <path d="M0.500079 8.45122C0.499498 8.25199 0.537177 8.05514 0.610346 7.87514C0.683514 7.69513 0.790314 7.53655 0.922897 7.41103L7.77939 0.969876C7.98387 0.773731 8.24035 0.666504 8.50504 0.666504C8.76973 0.666504 9.02621 0.773731 9.23068 0.969876L16.0872 7.63774C16.3205 7.8641 16.4673 8.18937 16.4952 8.54201C16.523 8.89464 16.4297 9.24574 16.2357 9.51808C16.0418 9.79042 15.763 9.96168 15.4609 9.99419C15.1587 10.0267 14.8578 9.9178 14.6245 9.69145L8.49932 3.73037L2.37419 9.49141C2.20645 9.65448 2.00219 9.75807 1.78559 9.78991C1.56898 9.82176 1.34909 9.78053 1.15193 9.6711C0.954775 9.56168 0.788606 9.38863 0.673086 9.17244C0.557565 8.95626 0.497528 8.70598 0.500079 8.45122Z" fill="#AEAEAE"/>
+          </svg>
+        </div>
+        <div class="input__body">
+          <div class="input__box-2">
+            <div>
+              <h3>Имя</h3>
+              <p>{ Имя }</p>
+            </div>
+            <div>
+              <h3>Фамилия</h3>
+              <p>{ Фамилия }</p>
+            </div>
+            <div>
+              <h3>E-mail</h3>
+              <p>{ E-mail }</p>
+            </div>
+            <div>
+              <h3>Телефон</h3>
+              <p>{ Телефон }</p>
+            </div>
+          </div>
+          <div class="input__box-3">
+            <div>
+              <h3>Адресс</h3>
+              <p>{ адрес }</p>
+            </div>
+            <div>
+              <h3>Комментарий</h3>
+              <p>{ Комментарий }</p>
+            </div>
+            <div>
+              <h3>Как можно скорее</h3>
+              <p>{ Да }</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </body>
 </html>
 
 <script>
-  const inputHeader = document.querySelector('.input__header');
-  const inputBody = document.querySelector('.input__body');
-  const inputSvg = document.querySelector('.input__svg');
-  inputBody.style.display = 'none';
 
-  inputHeader.addEventListener('click', function() {
-    inputBody.style.display = inputBody.style.display === 'block' ? 'none' : 'block';
-    inputSvg.style.transform = inputSvg.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
-  });
 </script>

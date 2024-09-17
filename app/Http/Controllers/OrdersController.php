@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KitchenController extends Controller
+class Orders extends Controller
 {
   public function show()
   { 
@@ -15,6 +15,6 @@ class KitchenController extends Controller
       // другие пиццы
     ];
     
-    return view('kitchen', compact('pizzas'));
+    return view('orders', compact('pizzas'));
   }
 }
