@@ -22,3 +22,10 @@ Route::get('/cuper', [CuperController::class, 'index'])->name('cuper');
 
 // Страница Kitchen
 Route::get('/kitchen', [KitchenController::class, 'index'])->name('kitchen');
+
+Route::prefix('courier')->group(function () {
+    Route::get('orders', [CuperController::class, 'index'])->name('courier.index');
+    Route::post('orders/{id}/select', [CuperController::class, 'selectOrder'])->name('courier.selectOrder');
+    Route::post('orders/{id}/confirm', [CuperController::class, 'confirmDelivery'])->name('courier.confirmDelivery');
+    Route::post('orders/{id}/report', [CuperController::class, 'reportIssue'])->name('courier.reportIssue');
+});
