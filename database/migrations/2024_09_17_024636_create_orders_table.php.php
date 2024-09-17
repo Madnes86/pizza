@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');
+            $table->unsignedBigInteger('status_id');
             $table->string('address');
-            $table->timestamp('delivery_time');
+            $table->timestamp('delivery_time')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });
