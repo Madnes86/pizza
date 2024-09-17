@@ -2,19 +2,23 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CuperController;
+use App\Http\Controllers\KitchenController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Главная страница (пиццы)
+Route::get('/', [PizzaController::class, 'index'])->name('main');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Страница заказа
+Route::get('/order', [OrderController::class, 'show'])->name('order');
+Route::post('/order/clear', [OrderController::class, 'clearPizzas']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Страница со списком заказов
+Route::get('/orders', [OrderController::class, 'list'])->name('orders');
 
-require __DIR__.'/auth.php';
+// Страница Cuper
+Route::get('/cuper', [CuperController::class, 'index'])->name('cuper');
+
+// Страница Kitchen
+Route::get('/kitchen', [KitchenController::class, 'index'])->name('kitchen');

@@ -1,7 +1,10 @@
+
+@props(['pizzas'])
+
 <div>
   <header class="header">
-    <div class="header__logo">
-      <img src="/assets/logo.png" alt="" class="header__logo__img">
+    <div class="header__logo" onclick="window.location.href='/'">
+      <img src="/assets/logo.png" alt="logo" class="header__logo__img">
       <div>
         <strong class="header__title">YUGU PIZZA</strong>
         <p class="header__subtitle">вкусней уже некуда</p>
@@ -18,7 +21,7 @@
       </div>
     </div>
     <div style="display: flex; gap: 10px;">
-      <button class="header__button">
+      <button class="header__button" onclick="window.location.href='{{ route('cuper') }}'">
         <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M11.5706 14.2087V12.8198C11.5706 12.0831 11.2921 11.3765 10.7966 10.8556C10.301 10.3347 9.6288 10.042 8.92793 10.042H3.64264C2.94177 10.042 2.2696 10.3347 1.77401 10.8556C1.27842 11.3765 1 12.0831 1 12.8198V14.2087" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M6.28522 7.26405C7.74471 7.26405 8.92787 6.0204 8.92787 4.48627C8.92787 2.95215 7.74471 1.7085 6.28522 1.7085C4.82573 1.7085 3.64258 2.95215 3.64258 4.48627C3.64258 6.0204 4.82573 7.26405 6.28522 7.26405Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -34,44 +37,36 @@
       </button>
     </div>
   </header>
-  <div class="basket" v-if="isBasket">
+  <div class="basket">
     <div class="basket__top">
       <p>В корзине <strong>3 товара</strong></p>
       <svg class="basket__cross" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path opacity="0.2" d="M11.6328 9.94495L19.7328 1.84495C19.9149 1.63239 20.01 1.35898 19.9992 1.07934C19.9884 0.799697 19.8724 0.534431 19.6746 0.336549C19.4767 0.138666 19.2114 0.0227402 18.9318 0.011939C18.6521 0.00113767 18.3787 0.096256 18.1662 0.278285L10.0662 8.37829L1.96616 0.267174C1.7536 0.0851447 1.48019 -0.00997263 1.20055 0.00082865C0.920905 0.0116299 0.65564 0.127554 0.457757 0.325437C0.259874 0.52332 0.143948 0.788585 0.133147 1.06823C0.122346 1.34787 0.217464 1.62128 0.399494 1.83384L8.49949 9.94495L0.388382 18.045C0.272069 18.1446 0.177602 18.2671 0.11091 18.405C0.044217 18.5428 0.00673853 18.693 0.000827977 18.846C-0.00508257 18.999 0.0207018 19.1516 0.0765624 19.2942C0.132423 19.4368 0.217154 19.5663 0.325438 19.6746C0.433721 19.7828 0.563218 19.8676 0.705801 19.9234C0.848384 19.9793 1.00098 20.0051 1.154 19.9992C1.30702 19.9933 1.45717 19.9558 1.59502 19.8891C1.73287 19.8224 1.85544 19.7279 1.95505 19.6116L10.0662 11.5116L18.1662 19.6116C18.3787 19.7936 18.6521 19.8888 18.9318 19.878C19.2114 19.8672 19.4767 19.7512 19.6746 19.5534C19.8724 19.3555 19.9884 19.0902 19.9992 18.8106C20.01 18.5309 19.9149 18.2575 19.7328 18.045L11.6328 9.94495Z" fill="black"/>
       </svg>
     </div>
-    <div class="basket__box">
-      <div class="pizza-side">
-        <img src="/assets/pizza-2.png" alt="" class="pizza-side__img">
-        <div class="pizza-side__column">
-          <h2 class="pizza-side__title">Сырный цыпленок</h2>
-          <p class="pizza-side__subtitle">Средняя 30 см, традиционное тесто</p>
-          <div class="pizza-side__bottom">
-            <div class="pizza-side__counter">
-              <button class="nav__button" id="decrement">-</button>
-              <strong id="counter">2</strong>
-              <button class="nav__button" id="increment">+</button>
-            </div>
-            <strong class="pizza-side__price">965 ₽</strong>
+    <div class="basket__middle pizzas-container">
+      @foreach($pizzas as $pizza)
+        <div class="pizza" style="background-color: #FFF; padding: 5px;">
+          <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
+          <div class="pizza__middle">
+            <h2 class="pizza__title">{{ $pizza['title'] }}</h2>
+            <p class="pizza__components">{{ $pizza['components'] }}</p>
+          </div>
+          <div class="pizza__bottom" x-data="pizza()">
+            <p>от <strong>359 ₽</strong></p>
+            <button class="pizza__button" x-on:click="toggle()" x-show="!isOrder">
+              Собрать
+            </button>
+            <template x-if="isOrder">
+              <div class="pizza__counter">
+                <button class="nav__button" x-on:click="decrement()">-</button>
+                <strong x-text="counter"></strong>
+                <button class="nav__button" x-on:click="increment()">+</button>
+              </div>
+            </template>
           </div>
         </div>
-      </div>
-      <div class="pizza-side">
-        <img src="/assets/pizza-2.png" alt="" class="pizza-side__img">
-        <div class="pizza-side__column">
-          <h2 class="pizza-side__title">Сырный цыпленок</h2>
-          <p class="pizza-side__subtitle">Средняя 30 см, традиционное тесто</p>
-          <div class="pizza-side__bottom">
-            <div class="pizza-side__counter">
-              <button class="nav__button">-</button>
-              <strong>2</strong>
-              <button class="nav__button">+</button>
-            </div>
-            <strong class="pizza-side__price">965 ₽</strong>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
     <div class="basket__bottom">
       <p class="basket__price">
@@ -79,39 +74,20 @@
         <span class="basket__line"></span>
         <strong>2000₽</strong>
       </p>
-      <button class="basket__button">Заказать</button>
+      <button class="basket__button" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button>
     </div>
   </div>
 </div>
 
 <script>
+
   document.querySelector('.basket__cross').addEventListener('click' , () => {
     document.querySelector('.basket').style.display = 'none';
   });
   document.getElementById('button-basket').addEventListener('click', open);
 
-  document.getElementById('decrement').addEventListener('click', decrement);
-  document.getElementById('increment').addEventListener('click', increment);
-
-  // Variables
-  var counter = 1;
-  document.getElementById('counter').innerHTML = counter;
-
-  // Functions
   function open() {
     document.querySelector('.basket').style.display = 'flex';
-  }
-  function decrement() {
-    if (counter > 0) {
-      counter--;
-      document.getElementById('counter').innerHTML = counter;
-    }
-  }
-  function increment() {
-    if (counter < 9) {
-      counter++;
-      document.getElementById('counter').innerHTML = counter;
-    }
   }
 
 </script>
@@ -126,6 +102,7 @@
     gap: 4vw;
   }
   .header__logo {
+    cursor: pointer;
     display: flex;
     gap: 10px;
   }
@@ -198,7 +175,7 @@
   }
   .basket {
     background: #f0efef;
-    display: flex;
+    display: none;
     top: 0;
     right: 0;
     position: fixed;
@@ -220,7 +197,7 @@
     justify-content: space-between;
     font-size: 20px;
   }
-  .basket__box {
+  .basket__middle {
     display: flex;
     flex-flow: column;
     height: 100%;
@@ -253,50 +230,15 @@
     font-size: 18px;
     width: 100%;
   }
-  .pizza-side {
-    background: #FFFFFF;
-    display: flex;
-    padding: 1vw 2vw;
-    width: 100%;
-    gap: 10px;
+  @media (min-width: 1000px) {
+    .header {
+      padding: 30px;
+      gap: 30px;
+    }
   }
-  .pizza-side__column {
-    display: flex;
-    flex-flow: column;
-    gap: 10px;
+  @media (max-width: 600px) {
+    .header__logo, .search__img{
+      display: none;
+    }
   }
-  .pizza-side__img {
-    object-fit: cover;
-    height: 102px;
-    width: 102px;
-  }
-  .pizza-side__title {
-    font-size: 20px;
-  }
-  .pizza-side__subtitle {
-    border-bottom: 1px solid #00000049;
-    opacity: 0.5;
-    font-size: 14px;
-  }
-  .pizza-side__bottom {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
-  .pizza-side__counter {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-  }
-@media (min-width: 1000px) {
-  .header {
-    padding: 30px;
-    gap: 30px;
-  }
-}
-@media (max-width: 600px) {
-  .header__logo, .search__img{
-    display: none;
-  }
-}
 </style>
