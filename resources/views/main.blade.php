@@ -377,7 +377,7 @@
         <div class="basket__middle">
           @foreach($pizzas as $pizza)
             <div class="pizza small" style="imagebackground-color: #FFF; padding: 5px;">
-              <img src="{{ $pizza['imag_path'] }}" alt="pizza" class="pizza__img">
+              <img src="{{ $pizza['image_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
                 <h2>{{ $pizza['discription'] }}</h2>
                 <p class="pizza__components">{{ $pizza['ingredients'] }}</p>
