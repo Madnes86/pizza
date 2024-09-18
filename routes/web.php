@@ -7,6 +7,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\CuperController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\ManagerControllers;
+use App\Http\Controllers\Orders;
 
 // Главная страница (пиццы)
 Route::get('/', [PizzaController::class, 'index'])->name('main');

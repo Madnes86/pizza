@@ -200,16 +200,12 @@
               </div>
               <div class="pizza__bottom">
                 <p>от <strong>{{ $pizza['price'] }} ₽</strong></p>
-                <button class="pizza__button">
-                  Собрать
-                </button>
-                <template x-if="isOrder">
-                  <div class="pizza__counter">
-                    <button class="nav__button">-</button>
-                    <strong x-text="counter"></strong>
-                    <button class="nav__button">+</button>
-                  </div>
-                </template>
+                <button class="pizza__button">Собрать</button>
+                <div class="pizza__counter">
+                  <button class="nav__button decrement">-</button>
+                  <strong class="counter">1</strong>
+                  <button class="nav__button increment">+</button>
+                </div>
               </div>
             </div>
           @endforeach
