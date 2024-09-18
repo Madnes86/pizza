@@ -376,10 +376,10 @@
         </div>
         <div class="basket__middle">
           @foreach($pizzas as $pizza)
-            <div class="pizza small" style="background-color: #FFF; padding: 5px;">
-              <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
+            <div class="pizza small" style="imagebackground-color: #FFF; padding: 5px;">
+              <img src="{{ $pizza['imag_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
-                <h2>{{ $pizza['title'] }}</h2>
+                <h2>{{ $pizza[''] }}</h2>
                 <p class="pizza__components">{{ $pizza['components'] }}</p>
               </div>
               <div class="pizza__bottom" x-data="pizza()">
@@ -472,10 +472,10 @@
         <div class="pizzas pizza-container">
           @foreach($pizzas as $pizza)
             <div class="pizza large">
-              <img src="{{ $pizza['image'] }}" alt="pizza">
+              <img src="{{ $pizza['image_path'] }}" alt="pizza">
               <div class="pizza__middle">
-                <h2 class="pizza__title">{{ $pizza['title'] }}</h2>
-                <p>{{ $pizza['components'] }}</p>
+                <h2 class="pizza__title">{{ $pizza['description'] }}</h2>
+                <p>{{ $pizza['ingredients'] }}</p>
               </div>
               <div class="pizza__bottom">
                 <p>от <strong>{{ $pizza['price'] }} ₽</strong></p>
