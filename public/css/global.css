@@ -273,6 +273,14 @@ input[type='radio'] {
 }
 
 /* INPUT */
+.input__svg {
+  transition: all 0.3s ease;
+}
+.input__box-1 {
+  display: grid;
+  padding: 20px;
+  gap: 20px;
+}
 .input__box-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

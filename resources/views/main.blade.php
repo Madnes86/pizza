@@ -175,6 +175,152 @@
     .side__checkbox > label, .side__checkbox > input {
       cursor: pointer;
     }
+
+    /* МОДАЛЬНОЕ ОКНО */
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal__content {
+      display: flex;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .modal__close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 40px;
+      cursor: pointer;
+      color: #FFF
+    }
+    .modal__image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal__image > img {
+      border: 1px dashed #0000003f;
+      border-radius: 50%;
+      max-width: 300px;
+      width: 100%;
+    }
+    .modal__info {
+      flex: 1;
+      padding: 0 20px;
+    }
+    .modal__info > h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .modal__info > p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .pizza-options {
+      margin-bottom: 20px;
+    }
+    .pizza-options__size, .pizza-options__dough {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .pizza-options__size-btn, .pizza-options__dough-btn {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .pizza-options__size-btn--active {
+      background-color: #f0c040;
+      color: #FFF;
+    }
+
+    .extras {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Отступы между пунктами */
+    }
+
+    .extras__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .extras__name {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .extras__price {
+      font-size: 14px;
+      color: #FF6A00; /* Оранжевый цвет цены */
+      margin-right: 10px;
+    }
+
+    .extras__counter {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .extras__button {
+      background-color: #f5f5f5;
+      border: none;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+    }
+
+    .extras__button--minus {
+      background-color: #f5f5f5;
+    }
+
+    .extras__button--plus {
+      background-color: #f5f5f5;
+    }
+
+    .extras__value {
+      font-size: 16px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .modal__add-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
@@ -207,10 +353,10 @@
             Войти
           </button>
           <ul class="header__options">
-            <a href="/order">Заказы</a>
+            <a href="/orders">Заказы</a>
             <a href="/cuper">Курьер</a>
             <a href="/kitchen">Кухня</a>
-            <a href="">Менеджер</a>
+            <a href="/manager">Менеджер</a>
           </ul>
           <button class="header__button" onclick="switchBasket()">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -230,7 +376,7 @@
         </div>
         <div class="basket__middle">
           @foreach($pizzas as $pizza)
-            <div class="pizza" style="background-color: #FFF; padding: 5px;">
+            <div class="pizza small" style="background-color: #FFF; padding: 5px;">
               <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
                 <h2>{{ $pizza['title'] }}</h2>
@@ -238,16 +384,12 @@
               </div>
               <div class="pizza__bottom" x-data="pizza()">
                 <p>от <strong>359 ₽</strong></p>
-                <button class="pizza__button" x-on:click="toggle()" x-show="!isOrder">
-                  Собрать
-                </button>
-                <template x-if="isOrder">
-                  <div class="pizza__counter">
-                    <button class="nav__button" x-on:click="decrement()">-</button>
-                    <strong x-text="counter"></strong>
-                    <button class="nav__button" x-on:click="increment()">+</button>
-                  </div>
-                </template>
+                <button class="pizza__button">Собрать</button>
+                <div class="pizza__counter">
+                  <button class="nav__button decrement">-</button>
+                  <strong class="counter">1</strong>
+                  <button class="nav__button increment">+</button>
+                </div>
               </div>
             </div>
           @endforeach
@@ -270,7 +412,7 @@
           <p class="sort__option">Пиццы</p>
           <p class="sort__option">Суши</p>
         </nav>
-        <button class="sort__button" onclick="switchSort()">
+        <button class="sort__button" onclick="switchSort()" id="sortPrice">
           <svg class="button__svg" width="14" height="14" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M13.7333 13.073C13.8167 12.991 13.8833 12.8929 13.9291 12.7845C13.9749 12.676 13.999 12.5594 14 12.4414C14.001 12.3233 13.9789 12.2063 13.9349 12.097C13.891 11.9878 13.8261 11.8885 13.7441 11.8051C13.6621 11.7216 13.5645 11.6556 13.4572 11.6109C13.3498 11.5662 13.2348 11.5437 13.1187 11.5448C13.0027 11.5458 12.8881 11.5703 12.7815 11.6169C12.6749 11.6635 12.5785 11.7312 12.4979 11.8161L11.3683 12.9655L11.3683 6.22218C11.3683 5.98643 11.2762 5.76033 11.1124 5.59363C10.9486 5.42692 10.7263 5.33327 10.4946 5.33327C10.2629 5.33327 10.0407 5.42692 9.87686 5.59363C9.71302 5.76033 9.62097 5.98643 9.62097 6.22218L9.62097 12.9655L8.49133 11.8161C8.32656 11.6542 8.10587 11.5646 7.8768 11.5666C7.64773 11.5686 7.42861 11.6621 7.26662 11.8269C7.10464 11.9917 7.01276 12.2147 7.01077 12.4477C7.00878 12.6808 7.09684 12.9054 7.25598 13.073L9.87696 15.7397C10.0408 15.9064 10.263 16 10.4946 16C10.7263 16 10.9485 15.9064 11.1123 15.7397L13.7333 13.073ZM6.74402 2.92699C6.90316 3.09464 6.99122 3.31918 6.98923 3.55225C6.98724 3.78532 6.89536 4.00827 6.73338 4.17308C6.57139 4.33789 6.35227 4.43138 6.1232 4.4334C5.89413 4.43543 5.67344 4.34583 5.50867 4.18391L4.37903 3.03455L4.37903 9.77782C4.37903 10.0136 4.28698 10.2397 4.12314 10.4064C3.95929 10.5731 3.73708 10.6667 3.50537 10.6667C3.27366 10.6667 3.05144 10.5731 2.8876 10.4064C2.72376 10.2397 2.63171 10.0136 2.63171 9.77782L2.63171 3.03455L1.50207 4.18391C1.42148 4.26881 1.32507 4.33653 1.21848 4.38311C1.1119 4.4297 0.997254 4.45422 0.88125 4.45525C0.765246 4.45628 0.650204 4.43378 0.542835 4.38909C0.435466 4.34439 0.33792 4.27839 0.25589 4.19493C0.173859 4.11146 0.108987 4.01222 0.0650585 3.90297C0.0211304 3.79373 -0.00097577 3.67668 3.22694e-05 3.55865C0.00104031 3.44062 0.0251425 3.32398 0.0709303 3.21553C0.116718 3.10708 0.183274 3.00899 0.266718 2.92699L2.88769 0.26026C3.05153 0.0936154 3.27371 -4.68861e-07 3.50537 -4.58735e-07C3.73703 -4.48609e-07 3.95921 0.0936154 4.12304 0.26026L6.74402 2.92699Z" fill="currentColor"/>
           </svg>
@@ -327,7 +469,7 @@
         <button class="button__accent">Применить</button>
       </div>
       <div>
-        <div class="pizzas">
+        <div class="pizzas pizza-container">
           @foreach($pizzas as $pizza)
             <div class="pizza large">
               <img src="{{ $pizza['image'] }}" alt="pizza">
@@ -364,46 +506,55 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="modal">
+      <div class="modal__content">
+        <button class="modal__close-btn" id="closeBtn">×</button>
+        <div class="modal__image">
+          <div class="modal__image">
+            <img class="modal__image-pizza" src="/assets/collect.png" alt="Пицца">
+          </div>
+        </div>
+        <div class="modal__info">
+          <h2>Пепперони фреш</h2>
+          <p>Вкуснейшая пицца от студентов ЮГУ!</p>
+          
+          <div class="pizza-options__size">
+            <button class="pizza-options__size-btn pizza-options__size-btn--active">Маленькая</button>
+            <button class="pizza-options__size-btn">Средняя</button>
+            <button class="pizza-options__size-btn">Большая</button>
+          </div>
+          
+          <div class="modal__extras extras">
+            <h3 class="extras__title">Добавить по вкусу</h3>
+            <div class="extras__item">
+              <span class="extras__name">Гавайский соус</span>
+              <span class="extras__price">+ 40 ₽</span>
+              <div class="extras__counter">
+                <button class="extras__button extras__button--minus">-</button>
+                <span class="extras__value">0</span>
+                <button class="extras__button extras__button--plus">+</button>
+              </div>
+            </div>
+            
+            <div class="extras__item">
+              <span class="extras__name">Чесночный соус</span>
+              <span class="extras__price">+ 30 ₽</span>
+              <div class="extras__counter">
+                <button class="extras__button extras__button--minus">-</button>
+                <span class="extras__value">0</span>
+                <button class="extras__button extras__button--plus">+</button>
+              </div>
+            </div>
+    
+          <button class="modal__add-button">Добавить в корзину за 799 ₽</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
 
 <script>
-  // КНОПОЧКИ
-  const pizzaButtons = document.querySelectorAll('.pizza__button');
-  const decrementButtons = document.querySelectorAll('.decrement');
-  const incrementButtons = document.querySelectorAll('.increment');
-
-  pizzaButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-      const pizzaCard = event.target.closest('.pizza');
-      const pizzaCounter = pizzaCard.querySelector('.pizza__counter');
-      const isCounterVisible = pizzaCounter.style.display === 'flex';
-      
-      pizzaCounter.style.display = isCounterVisible ? 'none' : 'flex';
-      button.style.display = isCounterVisible ? 'flex' : 'none';
-    });
-  });
-
-  decrementButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-      const pizzaCard = event.target.closest('.pizza');
-      const decrement = pizzaCard.querySelector('.counter');
-      let count = parseInt(decrement.innerHTML, 10);
-      if (count > 1)
-        decrement.innerHTML = count - 1;
-    });
-  });
-
-  incrementButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-      const pizzaCard = event.target.closest('.pizza');
-      const increment = pizzaCard.querySelector('.counter');
-      let count = parseInt(increment.innerHTML, 10);
-      if (count < 9)
-        increment.innerHTML = count + 1;
-    });
-  });
 
   // ПОИСК
   const search = document.querySelector('.search__input');
@@ -435,27 +586,107 @@
   });
 
   // КНОПКИ
-  const basketButton = document.getElementById('basketButton');
   const basket = document.querySelector('.basket');
   let isBasket = false;
+  let isOpening = false; 
+
+  document.addEventListener('click', function(event) {
+    const isClick = basket.contains(event.target);
+
+    if (isOpening) {
+      isOpening = false; // Сбрасываем флаг после первого клика
+      return;
+    }
+
+    if (!isClick && isBasket) {
+      isBasket = false;
+      basket.style.display = isBasket ? 'flex' : 'none';
+    }
+  });
   
   function switchBasket () {
     isBasket = !isBasket;
-    basket.style.display = 'none';
 
     if (isBasket) {
-      basket.style.display = 'flex';
+      basket.style.display = 'flex'; // Открываем корзину
+      isOpening = true; // Активируем флаг открытия
+    } else {
+      basket.style.display = 'none'; // Закрываем корзину
     }
   }
   
   // СОРТИРОВКА
   const sortText = document.querySelector('.button__subtitle')
   function switchSort() {
-    if (sortText.innerHTML == 'цена') {
-      sortText.innerHTML = 'актуальность';
+    if (sortText.innerHTML == 'цена низкая') {
+      sortText.innerHTML = 'цена высокая';
     } else {
-      sortText.innerHTML = 'цена';
+      sortText.innerHTML = 'цена низкая';
     }
   }
+
+  let isAscending = true; // Переменная для отслеживания направления сортировки
+
+  document.getElementById('sortPrice').addEventListener('click', () => {
+      const pizzaContainer = document.querySelector('.pizza-container');
+      const pizzas = Array.from(pizzaContainer.querySelectorAll('.pizza'));
+
+      pizzas.sort((a, b) => {
+          const priceA = parseInt(a.querySelector('p strong').textContent.replace(/\D/g, ''));
+          const priceB = parseInt(b.querySelector('p strong').textContent.replace(/\D/g, ''));
+          
+          // Если сортировка по возрастанию
+          if (isAscending) {
+              return priceA - priceB;
+          } else {
+              return priceB - priceA;
+          }
+      });
+
+      // Перестановка пицц в DOM
+      pizzas.forEach(pizza => pizzaContainer.appendChild(pizza));
+
+      // Переключение направления сортировки
+      isAscending = !isAscending;
+  });
+
+  // МОДАЛКА
+  document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById('modal');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Закрытие модалки при нажатии на кнопку закрытия
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    // Закрытие модалки при нажатии вне модального контента
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+
+  // ДОБАВКИ
+  document.querySelectorAll('.extras__item').forEach(item => {
+  const minusBtn = item.querySelector('.extras__button--minus');
+  const plusBtn = item.querySelector('.extras__button--plus');
+  const valueDisplay = item.querySelector('.extras__value');
+  
+  let value = 0;
+
+  minusBtn.addEventListener('click', () => {
+    if (value > 0) {
+      value--;
+      valueDisplay.textContent = value;
+    }
+  });
+
+  plusBtn.addEventListener('click', () => {
+    value++;
+    valueDisplay.textContent = value;
+  });
+});
 
 </script>
