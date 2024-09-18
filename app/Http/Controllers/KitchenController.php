@@ -15,6 +15,7 @@ class KitchenController extends Controller
       // другие пиццы
     ];
     
+    
     return view('kitchen', compact('pizzas'));
   }
 }

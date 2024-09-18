@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\basket_dish;
+use App\Http\Controllers\BD_us;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\OrderController;
@@ -27,3 +29,6 @@ Route::get('/kitchen', [KitchenController::class, 'show'])->name('kitchen');
 
 // Страница Manager
 Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
+
+Route::get('/add/basket', [basket_dish::class, 'add_bsk'])->where($request=["id" => 1]);
+Route::get('/add/ba', [PizzaController::class, 'add']);
