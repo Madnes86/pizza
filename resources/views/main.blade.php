@@ -379,8 +379,8 @@
             <div class="pizza small" style="imagebackground-color: #FFF; padding: 5px;">
               <img src="{{ $pizza['imag_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
-                <h2>{{ $pizza[''] }}</h2>
-                <p class="pizza__components">{{ $pizza['components'] }}</p>
+                <h2>{{ $pizza['discription'] }}</h2>
+                <p class="pizza__components">{{ $pizza['ingredients'] }}</p>
               </div>
               <div class="pizza__bottom" x-data="pizza()">
                 <p>от <strong>359 ₽</strong></p>
@@ -403,7 +403,7 @@
           <button class="button__accent" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button>
         </div>
       </div>
-    </div>
+          </div>
     <div class="sort">
       <h3 class="sort__title">Все пиццы</h3>
       <div class="sort__row">
