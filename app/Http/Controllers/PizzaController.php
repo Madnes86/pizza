@@ -24,9 +24,10 @@ class PizzaController extends Controller
 
     $pizzas = dishes::all();
     $basket_Ing  = basket::where('status', 'basket')->get();
+    $summ = basket::where('status','basket')->sum('price');
+  
 
-
-    return view('main', compact('pizzas','basket_Ing'));
+    return view('main', compact('pizzas','basket_Ing','summ'));
   }
 
 
