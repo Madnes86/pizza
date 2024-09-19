@@ -30,20 +30,29 @@ class PizzaController extends Controller
   }
 
 
-  public function insert()
-  {
-    $pizzas = [
-      ['name'=>'name', 'image_path' => '/assets/collect.png', 'discription' => 'Комбо сбор', 'ingredients' => 'На ваш выбор', 'price' => 290],
-      ['name'=>'name', 'image_path' => '/assets/salami.png', 'discription' => 'Салями', 'ingredients' => 'Салями, Моцарелла, Томатный соус', 'price' => 250],
-      ['name'=>'name', 'image_path' => '/assets/barbeque.png', 'discription' => 'Барбекю', 'ingredients' => 'Соус барбекю, Буженина, Бекон, Моцарелла, Болгарский перец, Помидоры, лук, Томатный соус', 'price' => 310],
-      ['name'=>'name', 'image_path' => '/assets/margarita.png', 'discription' => 'Маргарита', 'ingredients' => 'Помидоры, Моцарелла, Томатный соус', 'price' => 290],
-      ['name'=>'name', 'image_path' => '/assets/halal.png', 'discription' => 'Халяль', 'ingredients' => 'Говядина, Моцарелла, Картофель по деревенски, Болгарский перец, Черный перец, Грибы, Зира, Томатный соус', 'price' => 600],
-      ['name'=>'name', 'image_path' => '/assets/philadelphia.png', 'discription' => 'Филадельфия', 'ingredients' => 'Лосось, сыр сливочный', 'price' => 599],
-      ['name'=>'name', 'image_path' => '/assets/kapa-maki.png', 'discription' => 'Капа маки', 'ingredients' => 'Огурец, кунжут жареный', 'price' => 140],
-      // другие пиццы
-    ];
+  // public function insert()
+  // {
+  //   $pizzas = [
+  //     ['name'=>'name', 'image_path' => '/assets/collect.png', 'description' => 'Комбо сбор', 'ingredients' => 'На ваш выбор', 'price' => 290],
+  //     ['name'=>'name', 'image_path' => '/assets/salami.png', 'description' => 'Салями', 'ingredients' => 'Салями, Моцарелла, Томатный соус', 'price' => 250],
+  //     ['name'=>'name', 'image_path' => '/assets/barbeque.png', 'description' => 'Барбекю', 'ingredients' => 'Соус барбекю, Буженина, Бекон, Моцарелла, Болгарский перец, Помидоры, лук, Томатный соус', 'price' => 310],
+  //     ['name'=>'name', 'image_path' => '/assets/margarita.png', 'description' => 'Маргарита', 'ingredients' => 'Помидоры, Моцарелла, Томатный соус', 'price' => 290],
+  //     ['name'=>'name', 'image_path' => '/assets/halal.png', 'description' => 'Халяль', 'ingredients' => 'Говядина, Моцарелла, Картофель по деревенски, Болгарский перец, Черный перец, Грибы, Зира, Томатный соус', 'price' => 600],
+  //     ['name'=>'name', 'image_path' => '/assets/philadelphia.png', 'description' => 'Филадельфия', 'ingredients' => 'Лосось, сыр сливочный', 'price' => 599],
+  //     ['name'=>'name', 'image_path' => '/assets/kapa-maki.png', 'description' => 'Капа маки', 'ingredients' => 'Огурец, кунжут жареный', 'price' => 140],
+  //     // другие пиццы
+  //   ];
     
-   
-  }
+  //   foreach ($pizzas as $pizza) {
+  //     dump($pizza);
+  //       dishes::create([
+  //           'name' => $pizza['name'],
+  //           'image_path' => $pizza['image_path'],
+  //           'description' => $pizza['description'],
+  //           'price' => $pizza['price'],
+  //           'ingredients' => 1
+  //       ]);
+  //     }
+  // }
  
 }
