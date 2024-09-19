@@ -11,13 +11,14 @@ use App\Http\Controllers\CuperController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\ManagerControllers;
 use App\Http\Controllers\Orders;
+use App\Http\Controllers\pay;
 
 // Главная страница (пиццы)
 Route::get('/', [PizzaController::class, 'index'])->name('main');
 
 // Страница заказа
 Route::get('/order', [OrderController::class, 'show'])->name('order');
-Route::post('/order/clear', [OrderController::class, 'clearPizzas']);
+    Route::post('/order/clear', [basket_dish::class, 'clearPizzas']);
 
 // Страница заказов
 Route::get('/orders', [OrdersController::class, 'show'])->name('orders');
@@ -36,3 +37,4 @@ Route::get('/add/basket/{request}', [basket_dish::class, 'add_bsk']);
 Route::get('/add_dish', [PizzaController::class, 'insert']);
 
 Route::get('/go/kitchen',[basket_kitchen::class, 'update']);
+Route::get('/pay',[pay::class,'pay']);

@@ -29,5 +29,11 @@ class basket_dish extends Controller
 
         return redirect('/');
     }
+    public function clearPizzas()
+ {
+    // Очищаем массив
+    $pizzas = basket::query()->delete();
+   return redirect('/');
+ }
 
 }

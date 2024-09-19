@@ -193,10 +193,10 @@
         <div class="input__box-1">
           @foreach($pizzas as $pizza)
             <div class="pizza medium">
-              <img src="{{ $pizza['image'] }}" alt="pizza" class="pizza__img">
+              <img src="{{ $pizza['image_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
-                <h2 class="pizza__title">{{ $pizza['title'] }}</h2>
-                <p class="pizza__components">{{ $pizza['components'] }}</p>
+                <h2 class="pizza__title">{{ $pizza['description'] }}</h2>
+                <p class="pizza__components">{{ $pizza['ingredients'] }}</p>
               </div>
               <div class="pizza__bottom">
                 <p>от <strong>{{ $pizza['price'] }} ₽</strong></p>
@@ -278,7 +278,7 @@
             <span class="basket__line"></span>
             <strong>299₽</strong>
           </p>
-          <button class="button__accent" onclick="window.location.href = '/orders'">Оформить</button>
+          <button class="button__accent" onclick="window.location.href = '/pay'">Оформить</button>
         </div>
       </div>
     </div>

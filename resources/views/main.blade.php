@@ -400,7 +400,7 @@
             <span class="basket__line"></span>
             <strong>{{$summ}}</strong>
           </p>
-        <a href="/go/kitchen">  <button class="button__accent" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button></a>
+        <a href="/order">  <button class="button__accent" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button></a>
         </div>
       </div>
           </div>

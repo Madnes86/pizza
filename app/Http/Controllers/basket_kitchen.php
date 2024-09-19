@@ -34,6 +34,7 @@ class basket_kitchen extends Controller
     //           'ingredients' => 1
     //                   ]);   
     // }
-    return redirect('/');
+    return redirect('/orders');
  }
+ 
 }
