@@ -213,6 +213,7 @@
       </div>
       <div class="input">
         <div class="input__header">
+          
           <h2 class="input__title">2.Информация</h2>
         </div>
         <div class="input__box-2">

@@ -41,8 +41,8 @@
       <div class="input">
         <div class="input__header">
           <h2>Заказ { номер }</h2>
-          <p>{ дата }</p>
-          <p>{ статус }</p>
+          <p>   {{$bas['created_at']}}</p>
+          <p>{{ $bas['status']}}</p>
           <a href="/cuper/cach"><button class="pizza__button" > Принял </button></a>
           <a href="/cuper/done"><button class="pizza__button" > Доставил</button></a>
           <svg class="input__svg" xmlns="http://www.w3.org/2000/svg" width="17" height="10" viewBox="0 0 17 10" fill="none">
@@ -54,29 +54,29 @@
             
             <div>
               <h3>Имя</h3>
-              <p>{ Имя }</p>
+              <p>{{$user['name']}}</p>
             </div>
             <div>
               <h3>Фамилия</h3>
-              <p>{ Фамилия }</p>
+              <p>{{$user['surname']}}</p>
             </div>
             <div>
               <h3>E-mail</h3>
-              <p>{ E-mail }</p>
+              <p>{{ $user['email'] }}</p>
             </div>
             <div>
               <h3>Телефон</h3>
-              <p>{ Телефон }</p>
+              <p>{{ $user['phone'] }}</p>
             </div>
           </div>
           <div class="input__box-3">
             <div>
               <h3>Адресс</h3>
-              <p>{ адрес }</p>
+              <p> {{ $user['address'] }}</p>
             </div>
             <div>
               <h3>Комментарий</h3>
-              <p>{ Комментарий }</p>
+              <p>{{ $user['comment'] }}</p>
             </div>
             <div>
               <h3>Как можно скорее</h3>
