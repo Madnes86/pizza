@@ -23,8 +23,8 @@ class PizzaController extends Controller
     // ];
 
     $pizzas = dishes::all();
-    $basket_Ing = basket::all();
-    
+    $basket_Ing  = basket::where('status', 'basket')->get();
+
 
     return view('main', compact('pizzas','basket_Ing'));
   }

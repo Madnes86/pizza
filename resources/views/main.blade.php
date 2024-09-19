@@ -376,7 +376,7 @@
         </div>
         <div class="basket__middle">
           @foreach($basket_Ing as $basket)
-            <div class="pizza small" style="imagebackground-color: #FFF; padding: 5px;">
+            <div class="pizza small" style="background-color: #FFF; padding: 5px;">
               <img src="{{ $basket['image_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
                 <h2>{{ $basket['discription'] }}</h2>
@@ -400,7 +400,7 @@
             <span class="basket__line"></span>
             <strong>2000₽</strong>
           </p>
-          <button class="button__accent" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button>
+        <a href="/go/kitchen">  <button class="button__accent" href="/order.blade.php" onclick="window.location.href='{{ route('order') }}'">Заказать</button></a>
         </div>
       </div>
           </div>

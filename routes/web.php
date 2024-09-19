@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\basket_dish;
+use App\Http\Controllers\basket_kitchen;
 use App\Http\Controllers\BD_us;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
@@ -33,3 +34,5 @@ Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
 Route::get('/add/basket/{request}', [basket_dish::class, 'add_bsk']);
 
 Route::get('/add_dish', [PizzaController::class, 'insert']);
+
+Route::get('/go/kitchen',[basket_kitchen::class, 'update']);
