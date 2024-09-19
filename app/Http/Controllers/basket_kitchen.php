@@ -16,7 +16,8 @@ class basket_kitchen extends Controller
     $basket = basket::all();
     foreach ($basket as $bas){
     $id = $bas['id'];
-     basket::where('id',$id)->update(array('status'=>'kitchen'));
+    
+     basket::where('id',$id)->update(array('status'=>'kitchen' ));
 
 
     }

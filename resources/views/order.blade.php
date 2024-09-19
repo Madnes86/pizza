@@ -260,13 +260,13 @@
       <div class="input">
         <div class="input__header">
           <h2 class="input__title">Сумма:</h2>
-          <h2 class="input__title">2365 ₽</h2>
+          <h2 class="input__title">{{$summ + 135+299}}₽</h2>
         </div>
         <div class="input__box-4">
           <p class="basket__price">
             <span>Товары</span>
             <span class="basket__line"></span>
-            <strong>2000₽</strong>
+            <strong>{{$summ}}₽</strong>
           </p>
           <p class="basket__price">
             <span>Доставка</span>

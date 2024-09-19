@@ -10,8 +10,8 @@ class OrderController extends Controller
     public function show()
     { 
       $pizzas = basket::where('status','basket')->get();
-      dump($pizzas);
-      return view('order', compact('pizzas'));
+      $summ = basket::where('status','basket')->sum('price');
+      return view('order', compact('pizzas' ,'summ'));
     }
 
 

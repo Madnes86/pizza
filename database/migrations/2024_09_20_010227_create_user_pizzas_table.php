@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('baskets', function (Blueprint $table) {
+        Schema::create('user_pizzas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image_path');
-            $table->string('ingredients') ;
-            $table->string('description')->default('Нет описания...');
-            $table->integer('price');
-            $table->string('status')->default('kitchen');
-            $table->string('user_id');
+            $table->string('suname');
+            $table->string('mail');
+            $table->string('phone');
+            $table->string('address');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('baskets');
+        Schema::dropIfExists('user_pizzas');
     }
 };

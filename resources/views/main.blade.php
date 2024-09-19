@@ -384,7 +384,7 @@
               </div>
               <div class="pizza__bottom" x-data="pizza()">
                 <p> <strong>{{$basket['price']}}</strong></p>
-                <button class="pizza__button" > {{$basket['id']}} Собрать</button>
+                <button class="pizza__button" > Собрать</button>
                 <div class="pizza__counter">
                   <button class="nav__button decrement">-</button>
                   <strong class="counter">1</strong>

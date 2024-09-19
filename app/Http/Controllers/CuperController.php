@@ -8,6 +8,7 @@ class CuperController extends Controller
 {
   public function index()
   {
+    
     return view('cuper');
   }
 }

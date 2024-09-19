@@ -8,6 +8,7 @@ use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\CuperController;
+use App\Http\Controllers\kitchen_cuper;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\ManagerControllers;
 use App\Http\Controllers\Orders;
@@ -37,4 +38,11 @@ Route::get('/add/basket/{request}', [basket_dish::class, 'add_bsk']);
 Route::get('/add_dish', [PizzaController::class, 'insert']);
 
 Route::get('/go/kitchen',[basket_kitchen::class, 'update']);
+
 Route::get('/pay',[pay::class,'pay']);
+
+Route::get('/kitchen/done',[kitchen_cuper::class,'kitchen_done']);
+
+Route::get('/cuper/cach',[kitchen_cuper::class,'cuper_cach']);
+
+Route::get('/cuper/done',[kitchen_cuper::class,'cuper_done']);
