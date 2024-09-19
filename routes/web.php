@@ -8,6 +8,11 @@ use App\Http\Controllers\CuperController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\ManagerControllers;
 use App\Http\Controllers\Orders;
+use App\Http\Controllers\Basket_dish;
+use App\Http\Controllers\Basket_kitchen;
+use App\Http\Controllers\Pay;
+use App\Http\Controllers\kitchen_cuper;
+use App\Http\Controllers\Manager;   
 
 // Главная страница (пиццы)
 Route::get('/', [PizzaController::class, 'index'])->name('main');
@@ -24,7 +29,25 @@ Route::get('/', [PizzaController::class, 'index'])->name('main');
     // Страница Cuper
     Route::get('/cuper', [CuperController::class, 'index'])->name('cuper');
 
-    
+    // Страница Kitchen
+Route::get('/kitchen', [KitchenController::class, 'show'])->name('kitchen');
+
+// Страница Manager
+Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
+
+Route::get('/add/basket/{request}', [basket_dish::class, 'add_bsk']);
+
+Route::get('/add_dish', [PizzaController::class, 'insert']);
+
+Route::get('/go/kitchen',[basket_kitchen::class, 'update']);
+
+Route::get('/pay',[pay::class,'pay']);
+
+Route::get('/kitchen/done',[kitchen_cuper::class,'kitchen_done']);
+
+Route::get('/cuper/cach',[kitchen_cuper::class,'cuper_cach']);
+
+Route::get('/cuper/done',[kitchen_cuper::class,'cuper_done']);
 
     // Страница Manager
     Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
@@ -36,6 +59,17 @@ Route::get('/', [PizzaController::class, 'index'])->name('main');
             // Страница Kitchen
             Route::get('/kitchen', [KitchenController::class, 'show'])->name('kitchen');
          });
+
+        Route::middleware(['can:access to manager panel'])->group(function () {
+            // Страница Manager
+            Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
+        });
+
+        Route::middleware(['can:access to cuper panel'])->group(function () {
+            // Страница Cuper
+            Route::get('/cuper', [CuperController::class, 'index'])->name('cuper');
+        }); 
+        
 });
 
 //П.С у вас тут никакой коробочной авторизации нет, можете попробовать тот же Laravel breeze который вроде есть в мейне (если верить комиту Голошубина, в composer там не глядел)
