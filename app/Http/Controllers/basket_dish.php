@@ -15,10 +15,10 @@ class basket_dish extends Controller
 
 
 
-    public function add_bsk(Request $request)
+    public function add_bsk( $request)
     {
-        $dish = dishes::find(1);
-        dump($dish);
+        $dish = dishes::find($request );
+        // dd($dish, $request);
         basket::create([
             'name' => $dish->name,
             'image_path' => $dish->image_path,

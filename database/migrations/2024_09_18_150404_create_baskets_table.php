@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignID('ingredients') ->references('id')->on('ingredients') ->onDelete('cascade');
             $table->string('description')->default('Нет описания...');
             $table->integer('price');
+            $table->string('status')->default('kitchen');
             $table->timestamps();
         });
     }

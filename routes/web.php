@@ -30,5 +30,6 @@ Route::get('/kitchen', [KitchenController::class, 'show'])->name('kitchen');
 // Страница Manager
 Route::get('/manager', [ManagerControllers::class, 'index'])->name('manager');
 
-Route::get('/add/basket', [basket_dish::class, 'add_bsk'])->where($request=["id" => 1]);
-Route::get('/add/ba', [PizzaController::class, 'add']);
+Route::get('/add/basket/{request}', [basket_dish::class, 'add_bsk']);
+
+Route::get('/add_dish', [PizzaController::class, 'insert']);

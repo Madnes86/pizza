@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\basket;
 use App\Models\dishes;
 use Illuminate\Http\Request;
 
@@ -22,10 +23,27 @@ class PizzaController extends Controller
     // ];
 
     $pizzas = dishes::all();
+    $basket_Ing = basket::all();
     
 
-    return view('main', compact('pizzas'));
+    return view('main', compact('pizzas','basket_Ing'));
   }
 
+
+  public function insert()
+  {
+    $pizzas = [
+      ['name'=>'name', 'image_path' => '/assets/collect.png', 'discription' => 'Комбо сбор', 'ingredients' => 'На ваш выбор', 'price' => 290],
+      ['name'=>'name', 'image_path' => '/assets/salami.png', 'discription' => 'Салями', 'ingredients' => 'Салями, Моцарелла, Томатный соус', 'price' => 250],
+      ['name'=>'name', 'image_path' => '/assets/barbeque.png', 'discription' => 'Барбекю', 'ingredients' => 'Соус барбекю, Буженина, Бекон, Моцарелла, Болгарский перец, Помидоры, лук, Томатный соус', 'price' => 310],
+      ['name'=>'name', 'image_path' => '/assets/margarita.png', 'discription' => 'Маргарита', 'ingredients' => 'Помидоры, Моцарелла, Томатный соус', 'price' => 290],
+      ['name'=>'name', 'image_path' => '/assets/halal.png', 'discription' => 'Халяль', 'ingredients' => 'Говядина, Моцарелла, Картофель по деревенски, Болгарский перец, Черный перец, Грибы, Зира, Томатный соус', 'price' => 600],
+      ['name'=>'name', 'image_path' => '/assets/philadelphia.png', 'discription' => 'Филадельфия', 'ingredients' => 'Лосось, сыр сливочный', 'price' => 599],
+      ['name'=>'name', 'image_path' => '/assets/kapa-maki.png', 'discription' => 'Капа маки', 'ingredients' => 'Огурец, кунжут жареный', 'price' => 140],
+      // другие пиццы
+    ];
+    
+   
+  }
  
 }

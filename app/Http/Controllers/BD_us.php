@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dishes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,4 +32,7 @@ class BD_us extends Controller
     {
         return DB::table('$table')->get();
     }
-}
+
+
+
+   

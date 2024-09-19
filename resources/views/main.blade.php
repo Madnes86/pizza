@@ -375,16 +375,16 @@
           </svg>
         </div>
         <div class="basket__middle">
-          @foreach($pizzas as $pizza)
+          @foreach($basket_Ing as $basket)
             <div class="pizza small" style="imagebackground-color: #FFF; padding: 5px;">
-              <img src="{{ $pizza['image_path'] }}" alt="pizza" class="pizza__img">
+              <img src="{{ $basket['image_path'] }}" alt="pizza" class="pizza__img">
               <div class="pizza__middle">
-                <h2>{{ $pizza['discription'] }}</h2>
-                <p class="pizza__components">{{ $pizza['ingredients'] }}</p>
+                <h2>{{ $basket['discription'] }}</h2>
+                <p class="pizza__components">{{ $basket['ingredients'] }}</p>
               </div>
               <div class="pizza__bottom" x-data="pizza()">
                 <p>от <strong>359 ₽</strong></p>
-                <button class="pizza__button">Собрать</button>
+                <button class="pizza__button" > {{$basket['id']}} Собрать</button>
                 <div class="pizza__counter">
                   <button class="nav__button decrement">-</button>
                   <strong class="counter">1</strong>
@@ -479,7 +479,7 @@
               </div>
               <div class="pizza__bottom">
                 <p>от <strong>{{ $pizza['price'] }} ₽</strong></p>
-                <button class="pizza__button">Собрать</button>
+                <a href="/add/basket/{{$pizza['id']}}"><button class="pizza__button">Собрать</button></a>
                 <div class="pizza__counter">
                   <button class="nav__button decrement">-</button>
                   <strong class="counter">1</strong>

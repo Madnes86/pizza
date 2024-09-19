@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dishes;
 use Illuminate\Http\Request;
 
 class KitchenController extends Controller
 {
   public function show()
-  { 
-    $pizzas = [
-      ['id' => uniqid(), 'image' => '/assets/collect.png', 'title' => 'Комбо сбор', 'components' => 'На ваш выбор', 'price' => 359],
-      ['id' => uniqid(), 'image' => '/assets/barbeque.png', 'title' => 'Барбекю', 'components' => 'Соус барбекю, Буженина, Бекон, Моцарелла, Болгарский перец, Помидоры, лук, Томатный соус', 'price' => 299],
-      ['id' => uniqid(), 'image' => '/assets/margarita.png', 'title' => 'Маргарита', 'components' => 'Помидоры, Моцарелла, Томатный соус', 'price' => 299],
-      // другие пиццы
-    ];
+  {
     
+    $pizzas = dishes::all();
+    $status =$pizzas -> status;
+    $kitchen = dishes::where('status', 'kitchen')->get();
+    if ($status == 'kitchen') {
+      return view('kitchen', compact('kitchen'));
+      
+    }
     
-    return view('kitchen', compact('pizzas'));
   }
 }
