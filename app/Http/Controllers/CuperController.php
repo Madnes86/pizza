@@ -7,10 +7,34 @@ use App\Models\Order;
 use App\Models\Status;
 use App\Models\Issue;
 use Illuminate\Support\Facades\Log;
+use App\Models\basket;
+use App\Models\user_pizza;
 
 class CuperController extends Controller
 {
     // Метод для просмотра заказов, которые находятся на кухне
+    
+  public function index_()
+  {
+    $basket = basket::all();
+    try
+    {
+      $bas = $basket [0];
+      $bas['status'];$users = user_pizza::where('id', 1)->get();
+      $user = $users[0];
+      return view('cuper', compact('user', 'bas'));
+
+    }
+    catch (\Throwable $th)
+    {
+      $bas =['status' => 'нет заказа', 'created_at' => '' ]; 
+      $users = user_pizza::where('id', 2)->get();
+      $user = $users[0];
+      return view('cuper', compact('user', 'bas'));
+    }
+  }
+
+
     public function index()
     {
         try {

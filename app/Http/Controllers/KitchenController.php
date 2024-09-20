@@ -10,9 +10,30 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\ConfirmPreparationRequest;
 use App\Http\Requests\UpdateStatusRequest;
+use App\Models\basket;
+use App\Models\dishes;
 
 class KitchenController extends Controller
+
 {
+
+
+    public function show()
+    {
+      
+     
+  
+      $pizzas = basket::where('status', 'kitchen')->get();
+      // dd($kitchen);
+      
+        return view('kitchen', compact('pizzas'));
+        
+          
+      
+    }
+  
+  
+  
     public function __construct()
     {
         $this->middleware('auth:kitchen');
