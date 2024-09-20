@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:resources/views/main.blade.php
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -690,3 +691,5 @@
 });
 
 </script>
+========
+>>>>>>>> origin/misfit:resources/views/welcome.blade.php
