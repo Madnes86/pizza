@@ -8,20 +8,20 @@ use App\Http\Controllers\CuperController;
 use App\Http\Controllers\KitchenController;
 
 // Главная страница (пиццы)
-Route::get('/', [PizzaController::class, 'index'])->name('main');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/order', function () {
+    return view('order');
+});
+Route::middleware(['auth', 'verified'])->group(function () {
 
-// Страница заказа
-Route::get('/order', [OrderController::class, 'show'])->name('order');
-Route::post('/order/clear', [OrderController::class, 'clearPizzas']);
 
-// Страница со списком заказов
-Route::get('/orders', [OrderController::class, 'list'])->name('orders');
+    // тут ещё должны быть 
 
-// Страница Cuper
-Route::get('/cuper', [CuperController::class, 'index'])->name('cuper');
 
-// Страница Kitchen
-Route::get('/kitchen', [KitchenController::class, 'index'])->name('kitchen');
+});
+
 
 Route::prefix('courier')->group(function () {
     Route::get('orders', [CuperController::class, 'index'])->name('courier.index');
@@ -29,3 +29,5 @@ Route::prefix('courier')->group(function () {
     Route::post('orders/{id}/confirm', [CuperController::class, 'confirmDelivery'])->name('courier.confirmDelivery');
     Route::post('orders/{id}/report', [CuperController::class, 'reportIssue'])->name('courier.reportIssue');
 });
+
+require __DIR__ . '/auth.php';
